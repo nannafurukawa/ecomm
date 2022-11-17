@@ -1,1 +1,1 @@
-<p>iniciando product</p>
+<p>Iniciando product</p>
