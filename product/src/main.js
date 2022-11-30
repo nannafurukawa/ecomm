@@ -1,1 +1,1 @@
-<p>Iniciando product</p>
+console.log('Iniciando product');

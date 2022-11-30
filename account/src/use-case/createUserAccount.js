@@ -1,8 +1,7 @@
-let contas = []
+const users = [];
 
-export function createUserUseCase(nome, email, senha) {
-
-    const user = {
+export function createUserUseCase(name, email, password) {
+    const id = users.length
         id: contas.length + 1,
         name: nome,
         email: email,
