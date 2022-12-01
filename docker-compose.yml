@@ -1,5 +1,5 @@
-version: "3.9"
+version: '3'
 services:
   product:  
-   image: app/account
-   build: account
+   image: pagonxt/product
+   build: product
