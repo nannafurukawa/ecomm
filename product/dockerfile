@@ -1,0 +1,11 @@
+FROM node:18
+
+WORKDIR /product
+
+ADD package.json package-lock.json /product/
+
+RUN npm install
+
+ADD . .
+
+ENTRYPOINT [ "npm", "start" ]
