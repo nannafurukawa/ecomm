@@ -1,0 +1,12 @@
+{
+  "name": "use-case",
+  "version": "1.0.0",
+  "description": "",
+  "main": "createUserAccount.test.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nannarhara",
+  "license": "ISC"
+}
