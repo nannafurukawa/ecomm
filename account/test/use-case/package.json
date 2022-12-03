@@ -5,6 +5,7 @@
   "main": "createUserAccount.test.js",
   "type": "module",
   "scripts": {
+    "start": "node test/use-case/createUserAccount.test.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nannarhara",

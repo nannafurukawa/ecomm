@@ -5,8 +5,9 @@
   "main": "createuserAccount.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/use-case/createUserAccount.js"
+    "start": "node src/use-case/createUserAccount.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+    
   },
   "author": "Nannarhara",
   "license": "ISC"
