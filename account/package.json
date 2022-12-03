@@ -1,7 +1,6 @@
 {
   "name": "account",
   "version": "1.0.0",
-  "description": "",
   "main": "createuserAccount.js",
   "type": "module",
   "scripts": {
@@ -10,5 +9,6 @@
     
   },
   "author": "Nannarhara",
-  "license": "ISC"
+  "license": "ISC",
+  "description": ""
 }

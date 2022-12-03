@@ -1,4 +1,4 @@
-# ecomm
+# Ecomm
 **Repositório Essencial Semana 1 - Nxt Dev 🚀**
 
 Primeiro repositório criado para o programa Nxt Dev, em parceria com a Alura. 
