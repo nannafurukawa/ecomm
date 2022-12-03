@@ -12,7 +12,7 @@ const user = {
     createdDate
 };
 
-users.push(user);
+saveAccount(user);
 
 return user;
 
