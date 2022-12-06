@@ -4,10 +4,13 @@
   "main": "createuserAccount.js",
   "type": "module",
   "scripts": {
-    "start": "node src/use-case/createuserAccount.js",
-    "test": "node src/test/createUserAccount.test.js"
+    "start": "node src/use-case/createUserAccount.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nannarhara",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "mongodb": "^4.12.1"
+  }
 }
