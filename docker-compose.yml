@@ -8,6 +8,4 @@ services:
      image: pagonxt/account
      build: account
 
-  repositories:
-      image: pagonxt/repositories
-      build: repositories
+ 

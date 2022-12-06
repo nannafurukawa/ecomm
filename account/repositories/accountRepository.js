@@ -3,7 +3,7 @@ import { MongoClient } from 'mongodb';
 const connectionURL = 'mongodb://admin:admin@account-database:27017'
 const connection = new MongoClient(connectionURL);
 
-async function dataBaseConnect() {
+async function getCollection() {
     await connection.connect();
     const database = connection.db('accounts')
     return database.collection('users');
