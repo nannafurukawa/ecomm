@@ -1,0 +1,13 @@
+{
+  "name": "repositories",
+  "version": "1.0.0",
+  "description": "",
+  "main": "accountRepository.js",
+  "type": "module",
+  "scripts": {
+    "start": "node repositories/accountRepository.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nannarhara",
+  "license": "ISC"
+}
