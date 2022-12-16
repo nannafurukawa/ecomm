@@ -3,9 +3,24 @@ services:
   product:
     image: pagonxt/product
     build: product
+    ports:
+      - 3001:3001
 
   account:
-     image: pagonxt/account
-     build: account
+    image: pagonxt/account
+    build: account
+    volumes:
+      - ./account:/app
+    ports:
+      - 3000:3000
 
- 
+  mongodb_accounts:
+    image: mongo
+    container_name: mongodb_accounts
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongouser
+      - MONGO_INITDB_ROOT_PASSWORD=123456789
+      - MONGO_INITDB_DATABASE=accounts
+    ports:
+      - 27017:27017
