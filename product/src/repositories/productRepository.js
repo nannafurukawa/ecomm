@@ -1,4 +1,5 @@
-const products = []
+import{produto1, produto2} from "../repositories/products.js"
+const products = [produto1, produto2]
 
 export async function saveProduct(product) {
 
