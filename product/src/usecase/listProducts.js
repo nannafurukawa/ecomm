@@ -1,6 +1,6 @@
 import {findProduct} from '../repositories/productRepository.js'
 
 export async function getAllProducts() {
-    let products = findProduct();
+    const products = findProduct();
     return products;
 }

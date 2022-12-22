@@ -4,13 +4,13 @@ import {createProductUseCase} from './usecase/createProductUseCase.js';
 export const router = new Router();
 
 router.post('/products', function(request, response) {
-    const { produto} = request.body
+    const  produto = request.body
      createProductUseCase(produto)
         .then(saveProduct => {
             response.status(201).json(saveProduct)
         })
         .catch(error => {
-            response.status(400).json({ status: 'error', message: error.message });
+            response.status(400).json({ status: 'error', message: error.message + " - " + `${produto}`});
         }); 
 });
 router.get('/products', function(request,response) {
@@ -19,7 +19,7 @@ router.get('/products', function(request,response) {
         response.status(201).json(products)
     })
     .catch(error => {
-        response.status(400).json({ status: 'error', message: error.message });
+        response.status(500).json({ status: 'error', message: error.message });
     }); 
 
 } );

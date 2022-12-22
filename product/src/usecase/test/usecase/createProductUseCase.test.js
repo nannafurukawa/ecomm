@@ -2,7 +2,6 @@ import { createProductUseCase } from "../../src/usecase/createProductUseCase.js"
 
 const produto =
 {
-
     nome: "cerveja Colombina",
     valor: 10,
     quantidade: 1,
