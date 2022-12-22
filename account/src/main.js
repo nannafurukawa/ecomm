@@ -1,11 +1,12 @@
 import express from 'express';
 
 import { router } from './routes.js';
-const port = 3000;
+
 const app = express();
 app.use(express.json());
 app.use(router);
 
-app.listen(port, function () {
-    console.log(`Servidor escutando em http://localhost:${port}`);
+app.listen(3000, function () {
+    console.log('accounts server is running');
+
 });
