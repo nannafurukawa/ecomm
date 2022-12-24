@@ -1,0 +1,140 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "1.0.0",
+        "title": "API Product",
+        "description": "API para manipulação de produtos do ecommerce.",
+        "contact": {
+            "name": "Contact",
+            "url": "https://www.ecommerce.com",
+            "email": "ecomm@gmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3001",
+            "description": "Server 1"
+        }
+    ],
+    "paths": {
+        "/products": {
+            "summary": "Creates a product",
+            "description": "Given provided data, creates a product in the database",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "usuarioId": {
+                                        "type": "string"
+                                    },
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "descricao": {
+                                        "type": "string"
+                                    },
+                                    "quantidade": {
+                                        "type": "integer"
+                                    },
+                                    "valor": {
+                                        "type": "number"
+                                    },
+                                    "caracteristicas": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "string"
+                                                },
+                                                "descricao": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "imagens": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "url": {
+                                                    "type": "string"
+                                                },
+                                                "descricao": {
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "responses": {
+                                    "201": {
+                                        "description": "Product Created",
+                                        "content": {
+                                            "application/json": {
+                                                "schema": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "usuarioId": {
+                                                            "type": "string"
+                                                        },
+                                                        "id": {
+                                                            "type": "string"
+                                                        },
+                                                        "nome": {
+                                                            "type": "string"
+                                                        },
+                                                        "descricao": {
+                                                            "type": "string"
+                                                        },
+                                                        "quantidade": {
+                                                            "type": "integer"
+                                                        },
+                                                        "valor": {
+                                                            "type": "number"
+                                                        },
+                                                        "categoria": {
+                                                            "type": "string"
+                                                        },
+                                                        "caracteristicas": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "properties": {
+                                                                    "nome": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "descricao": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        },
+                                                        "imagens": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "properties": {
+                                                                    "url": {
+                                                                        "type": "string"
+                                                                    },
+                                                                    "descricao": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
