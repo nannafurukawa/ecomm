@@ -7,7 +7,7 @@ services:
     volumes:
      - ./product:/app 
     ports:
-      - 3000:3000
+      - 3001:3001
 
   account: 
     image: eccom/account
@@ -15,7 +15,7 @@ services:
     volumes:
       - ./account:/app 
     ports:
-      - 3001:3001    
+      - 3000:3000
       
   db:
     image: mysql
