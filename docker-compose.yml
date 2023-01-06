@@ -9,14 +9,6 @@ services:
     ports:
       - 3001:3001
 
-  account: 
-    image: eccom/account
-    build: account
-    volumes:
-      - ./account:/app 
-    ports:
-      - 3000:3000
-      
   db:
     image: mysql
     volumes:
@@ -25,7 +17,7 @@ services:
       - "mysql-conf:/etc/mysql/conf.d"
     restart: unless-stopped
     ports:
-      - 3306:3306
+      - 3006:3006
     environment:
       MYSQL_ROOT_PASSWORD: rootpw
       MYSQL_DATABASE: db
