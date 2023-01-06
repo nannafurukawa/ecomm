@@ -17,7 +17,9 @@ services:
       - "mysql-conf:/etc/mysql/conf.d"
     restart: unless-stopped
     ports:
-      - 3006:3006
+      - 8083:3306
+    expose:
+      - 8083
     environment:
       MYSQL_ROOT_PASSWORD: rootpw
       MYSQL_DATABASE: db

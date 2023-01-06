@@ -7,13 +7,14 @@ const sequelize = new Sequelize(
    'db',
    'dbpw',
     {
-      host: '0.0.0.0:3006',
-      dialect: 'mysql'
+      host: '127.0.0.1',
+      dialect: 'mysql',
+      port:8083
     }
   );
 
 sequelize.authenticate().then(() => {
-   console.log('Connection has been established successfully.');
+   console.log('Connection has been established successfully With Database.');
 }).catch((error) => {
    console.error('Unable to connect to the database: ', error);
 });
