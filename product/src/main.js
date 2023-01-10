@@ -1,29 +1,19 @@
 import express from 'express';
 import { router } from './routes.js';
-import { Sequelize } from 'sequelize';
-
-const sequelize = new Sequelize(
-   'db',
-   'db',
-   'dbpw',
-    {
-      host: '127.0.0.1',
-      dialect: 'mysql',
-      port:8083
-    }
-  );
-
-sequelize.authenticate().then(() => {
-   console.log('Connection has been established successfully With Database.');
-}).catch((error) => {
-   console.error('Unable to connect to the database: ', error);
-});
-
-const port = 3001;
+import swaggerUi from "swagger-ui-express";
+import apiDocs from  "./api-docs.json" assert {type: "json"}; ;
+import client from './repositories/databaseClient.js';
 const app = express();
 app.use(express.json());
 app.use(router);
-
-app.listen(port, function () {
-    console.log(`Servidor escutando em http://localhost:${port}`);
+//db.sync(() => console.log(`Banco de dados conectado: ${process.env.DB_NAME}`));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocs));
+app.listen(3000, function () {
+    console.log('Servidor iniciado na porta 3000');
+client.authenticate()
+    .then(() => {
+        console.log('Db connection OK!')
+    }).catch(e => {
+        console.log('Db connection Error: ', e)
+    })
 });
