@@ -17,6 +17,8 @@ export const produto1 = {
         descricaoImagem: "imagem de cerveja",
       },
     ],
+    // Product Has Many Images => Image belongs to Product 
+    // Produt Has Many Features => Feature Belongs to Product
   };
   
   export const produto2 = {
