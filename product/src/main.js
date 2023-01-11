@@ -1,5 +1,15 @@
 import express from 'express';
 import { router } from './routes.js';
+const { Sequelize, DataTypes } = require('sequelize');
+// const sequelize = new Sequelize(
+//  'ecomm',
+//  'nanna',
+//  '123456',
+//   {
+//     host: 'localhost',
+//     dialect: 'mysql'
+//   }
+// );
 import swaggerUi from "swagger-ui-express";
 import apiDocs from  "./api-docs.json" assert {type: "json"}; ;
 import client from './repositories/databaseClient.js';
