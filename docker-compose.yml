@@ -7,7 +7,7 @@ services:
     volumes:
      - ./product:/app 
     ports:
-      - 3001:3001
+      - 3000:3000
 
   account: 
     image: eccom/account
@@ -15,7 +15,8 @@ services:
     volumes:
       - ./account:/app 
     ports:
-      - 3000:3000
+      - 3001:3001
+      
       
   db:
     image: mysql
@@ -27,10 +28,10 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_ROOT_PASSWORD: rootpw
-      MYSQL_DATABASE: db
-      MYSQL_USER: db
-      MYSQL_PASSWORD: dbpw
+      MYSQL_ROOT_PASSWORD: true
+      MYSQL_DATABASE: product
+      MYSQL_USER: nanna
+      MYSQL_PASSWORD: 123456
   
   adminer:
     image: adminer

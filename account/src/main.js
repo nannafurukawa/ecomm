@@ -1,12 +1,20 @@
-import express from 'express';
 
+import express, { json } from 'express';
 import { router } from './routes.js';
+import cors from 'cors';
+import swaggerUi from "swagger-ui-express";
+import apiDocs  from '../api-docs.json' assert { type: "json" };
 
+
+const port = 3001;
 const app = express();
-app.use(express.json());
+
+app.use(json());
+app.use(cors());
 app.use(router);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(apiDocs))
 
-app.listen(3000, function () {
-    console.log('accounts server is running');
-
+app.listen(port, () => {
+  console.log(`Account app listening on port ${port}`)
 });
+
