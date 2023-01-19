@@ -1,23 +1,21 @@
-version: '3.9'
+version: "3.9"
 services:
-
   product:
-    image: eccom/product
+    image: ecomm/product
     build: product
     volumes:
-     - ./product:/app 
+      - ./product:/app
     ports:
       - 3000:3000
 
-  account: 
-    image: eccom/account
+  account:
+    image: ecomm/account
     build: account
     volumes:
-      - ./account:/app 
+      - ./account:/app
     ports:
       - 3001:3001
-      
-      
+
   db:
     image: mysql
     volumes:
@@ -26,19 +24,13 @@ services:
       - "mysql-conf:/etc/mysql/conf.d"
     restart: unless-stopped
     ports:
-      - 3306:3306
+      - 3307:3306
     environment:
-      MYSQL_ROOT_PASSWORD: true
+      MYSQL_ROOT_PASSWORD: "true"
       MYSQL_DATABASE: product
       MYSQL_USER: nanna
       MYSQL_PASSWORD: 123456
-  
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
-      
+
 volumes:
   mysql-data:
     driver: local
