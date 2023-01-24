@@ -3,7 +3,7 @@ import { router } from './routes.js';
 
 import swaggerUi from "swagger-ui-express";
 import apiDocs from  "../api-docs.json" assert {type: "json"}; ;
-import client from './repositories/databaseClient.js';
+import client from '../src/usecase/repositories/databaseClient.js';
 const app = express();
 app.use(express.json());
 app.use(router);

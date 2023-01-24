@@ -5,11 +5,6 @@ import { productExample } from '../data/products.js';
 
 
 describe('Product Creation', () => {
-
-    afterAll(async() => {
-        await client.close();
-      });
-
     it('should create a product given required product data', async () => {
         await request(app)
             .post('/products')
@@ -40,4 +35,7 @@ describe('Product Creation', () => {
                 });
             });
     });
+    afterAll(async() => {
+        await client.close();
+      });
 })

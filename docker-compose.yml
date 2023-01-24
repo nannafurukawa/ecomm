@@ -24,7 +24,7 @@ services:
       - "mysql-conf:/etc/mysql/conf.d"
     restart: unless-stopped
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       MYSQL_ROOT_PASSWORD: "true"
       MYSQL_DATABASE: product

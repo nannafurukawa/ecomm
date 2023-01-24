@@ -1,4 +1,4 @@
-import {findProducts} from '../repositories/productRepository.js'
+import {findProducts} from '../usecase/repositories/productRepository.js'
 
 export async function getAllProducts() {
     const products = findProducts();

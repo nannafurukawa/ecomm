@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import client from "../src/repositories/databaseClient.js";
+import client from "../src/usecase/repositories/databaseClient.js";
 export class ProductFeature extends Model {
 
     static associate(models) {

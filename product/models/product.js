@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
-import client from "../../src/repositories/databaseClient.js";
-import { ProductFeture } from "./productFeature.js";
-import { ProductImage } from "./productImage.js.js";
+import client from "../src/usecase/repositories/databaseClient.js";
+import { ProductFeature } from "../models/productFeature.js";
+import { ProductImage } from "../models/productImage.js";
 
 export class Product extends Model {
 
@@ -27,7 +27,7 @@ Product.ProductImage = Product.hasMany(ProductImage, {
     as: 'images'
 });
 
-Product.ProductFeture = Product.hasMany(ProductFeture, {
+Product.ProductFeature = Product.hasMany(ProductFeature, {
     foreignKey: 'product_id',
     as: 'fetures'
 
@@ -37,6 +37,6 @@ ProductImage.belongsTo(Product, {
     foreignKey: 'id',
 });
 
-ProductFeture.belongsTo(Product, {
+ProductFeature.belongsTo(Product, {
     foreignKey: 'id',
 });
