@@ -1,10 +1,15 @@
 import request from 'supertest';
 import {app} from  '../../src/app.js';
-import client from '../../src/repositories/databaseClient.js';
+import { findProducts } from '../../src/usecase/repositories/productRepository';
 import { productExample } from '../data/products.js';
 
 
 describe('Product Creation', () => {
+
+      // afterEach(async () => {
+    //     await (await findProducts()).forEach(product => product.destroy())
+    // });
+    
     it('should create a product given required product data', async () => {
         await request(app)
             .post('/products')
@@ -35,7 +40,7 @@ describe('Product Creation', () => {
                 });
             });
     });
-    afterAll(async() => {
-        await client.close();
-      });
+    //afterAll(async() => {
+      //  await client.close();
+     // });
 })
