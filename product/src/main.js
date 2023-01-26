@@ -6,6 +6,8 @@ import apiDocs from  "../api-docs.json" assert {type: "json"}; ;
 import client from './repositories/databaseClient.js';
 const app = express();
 app.use(express.json());
+app.use(cors())
+app.use ('/api-docs', swaggerExpress.serve, swaggerExpress.setup(swaggerDocs));
 app.use(router);
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(apiDocs));
