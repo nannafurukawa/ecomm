@@ -2,7 +2,7 @@
   "name": "use-case",
   "version": "1.0.0",
   "description": "",
-  "main": "createUserAccount.test.js",
+  "main.js": "createUserAccount.test.js",
   "type": "module",
   "scripts": {
     "start": "node test/use-case/createUserAccount.test.js",

@@ -1,0 +1,23 @@
+CREATE TABLE products(
+Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+Name VARCHAR(50),
+Value VARCHAR(50),
+Quantity INT,
+Category VARCHAR(50),
+UserId INT NOT NULL,
+Date DATETIME,
+CONSTRAINT FK_ProductFeatures FOREIGN KEY (Id)
+REFERENCES Features(Id),
+CONSTRAINT FK_ProductsImages FOREIGN KEY (Id)
+REFERENCES Images(Id)
+);
+CREATE TABLE Features( 
+    Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	Name VARCHAR(50), 
+	Description VARCHAR(50)
+    );
+    CREATE TABLE Images(
+        Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        Url VARCHAR(50),
+        Description VARCHAR(50)
+    );

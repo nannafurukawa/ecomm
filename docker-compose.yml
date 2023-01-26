@@ -1,26 +1,48 @@
-version: "3"
+version: '3.9'
 services:
-  product:
-    image: pagonxt/product
-    build: product
-    ports:
-      - 3001:3001
 
-  account:
-    image: pagonxt/account
-    build: account
+  product:
+    image: eccom/product
+    build: product
     volumes:
-      - ./account:/app
+     - ./product:/app 
     ports:
       - 3000:3000
 
-  mongodb_accounts:
-    image: mongo
-    container_name: mongodb_accounts
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongouser
-      - MONGO_INITDB_ROOT_PASSWORD=123456789
-      - MONGO_INITDB_DATABASE=accounts
+  account: 
+    image: eccom/account
+    build: account
+    volumes:
+      - ./account:/app 
     ports:
-      - 27017:27017
+      - 3001:3001
+      
+      
+  db:
+    image: mysql
+    volumes:
+      - "mysql-data:/var/lib/mysql"
+      - "mysql-log:/var/log/mysql"
+      - "mysql-conf:/etc/mysql/conf.d"
+    restart: unless-stopped
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: true
+      MYSQL_DATABASE: product
+      MYSQL_USER: nanna
+      MYSQL_PASSWORD: 123456
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+      
+volumes:
+  mysql-data:
+    driver: local
+  mysql-log:
+    driver: local
+  mysql-conf:
+    driver: local
