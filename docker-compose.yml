@@ -16,25 +16,23 @@ services:
     ports:
       - 3001:3001
 
-  db:
-    image: mysql
-    volumes:
-      - "mysql-data:/var/lib/mysql"
-      - "mysql-log:/var/log/mysql"
-      - "mysql-conf:/etc/mysql/conf.d"
-    restart: unless-stopped
-    ports:
-      - 3306:3306
+  account-database:
+    image: mongo
+    container_name: account-database
     environment:
-      MYSQL_ROOT_PASSWORD: "true"
-      MYSQL_DATABASE: product
-      MYSQL_USER: nanna
-      MYSQL_PASSWORD: 123456
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=accounts
+    ports:
+      - 27017:27017
 
-volumes:
-  mysql-data:
-    driver: local
-  mysql-log:
-    driver: local
-  mysql-conf:
-    driver: local
+  product-database:
+    image: mysql
+    container_name: product-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=f30a1cd65530caf64f1ea31f702e7124a1bbee55
+      - MYSQL_DATABASE=product
+      - MYSQL_USER=mysqluser
+      - MYSQL_PASSWORD=mysqlpass
+    ports:
+      - 3307:3306
