@@ -1,17 +1,33 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 
-export const client = new MongoClient('mongodb://mongouser:mongopass@localhost:27017');
-
-export async function getUsersCollection(client) {
-    const database = client.db('accounts');
-    const usersCollection = database.collection('users');
-    return usersCollection;
+async function getUsersCollection() {
+    const connectionURL = 'mongodb://admin:pass@account-database:27017'
+    const connection = new MongoClient(connectionURL);
+    await connection.connect();
+    const database = connection.db('accounts')
+    return database.collection('users');
 }
 
 export async function saveAccount(account) {
-    await client.connect();
-    const usersCollection = await getUsersCollection(client);
-    await usersCollection.insertOne(account);
-    await client.close();
+    const usercollection = await getUsersCollection();
+    await usercollection.insertOne(account);
     
+}
+
+ export async function findAccount(_id) {
+    const usercollection = await getUsersCollection();
+    const  dbResult = await usercollection.findOne({
+        "_id": ObjectId(_id)
+    })
+    
+    return dbResult;
+ }
+
+export async function deleteOne (_id){
+    const usercollection = await getUsersCollection();
+    const deleteOne = await usercollection.deleteOne({
+        "_id": ObjectId(_id)
+    })
+    
+    return deleteOne; 
 }

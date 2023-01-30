@@ -1,7 +1,7 @@
 import { request, response, Router } from 'express';
 import { deleteOne } from './repositories/accountRepository.js';
 import { createUserUserCase } from "./use-case/createUserAccount.js";
-import { getUserUserCase } from './use-case/';
+import { getUserUserCase } from './use-case/getUserAccount.js';
 
 export const router = new Router();
 
