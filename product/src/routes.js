@@ -13,12 +13,15 @@ router.get('/product', (req, res) => {
         })
 });
 router.post('/product', function (req, res) {
-    const product = 
+    const product = req.body;
     createProductUseCase(product)
         .then((data) => {
             res.status(201).json(data);
         })
         .catch((error) => {
+            console.log (error.message)
             res.status(400).json({ status: 'Error fetching products!', message: error.message });
         })
 });
+
+export default router

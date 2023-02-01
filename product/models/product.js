@@ -17,9 +17,9 @@ Product.init(
         quantity: DataTypes.INTEGER,
         description: DataTypes.TEXT,
         category: DataTypes.STRING,
-        user_id: DataTypes.UUID,
+        user_id: DataTypes.STRING,
     },
-    { sequelize: client, modelName: "Products" }
+    { sequelize: client, modelName: "Product", tableName: "products" }
 );
 
 Product.ProductImage = Product.hasMany(ProductImage, {
@@ -29,7 +29,7 @@ Product.ProductImage = Product.hasMany(ProductImage, {
 
 Product.ProductFeature = Product.hasMany(ProductFeature, {
     foreignKey: 'product_id',
-    as: 'fetures'
+    as: 'features'
 
 });
 

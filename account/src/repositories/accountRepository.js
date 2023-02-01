@@ -1,20 +1,24 @@
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from "mongodb";
+import * as dotenv from 'dotenv'
 
-async function getUsersCollection() {
-    const connectionURL = 'mongodb://admin:pass@account-database:27017'
-    const connection = new MongoClient(connectionURL);
-    await connection.connect();
-    const database = connection.db('accounts')
-    return database.collection('users');
+dotenv.config()
+
+const client = new MongoClient(process.env.DATABASE_URL);
+
+export async function getUsersCollection(client) {
+  const database = client.db("accounts");
+  const usersCollection = database.collection('users')
+  return usersCollection;
 }
 
 export async function saveAccount(account) {
-    const usercollection = await getUsersCollection();
-    await usercollection.insertOne(account);
-    
+  await client.connect();
+  const usersCollection = await getUsersCollection(client);
+  await usersCollection.insertOne(account);
+  await client.close();
 }
 
- export async function findAccount(_id) {
+export async function findAccount(_id) {
     const usercollection = await getUsersCollection();
     const  dbResult = await usercollection.findOne({
         "_id": ObjectId(_id)
@@ -23,7 +27,7 @@ export async function saveAccount(account) {
     return dbResult;
  }
 
-export async function deleteOne (_id){
+ export async function deleteOne (_id){
     const usercollection = await getUsersCollection();
     const deleteOne = await usercollection.deleteOne({
         "_id": ObjectId(_id)
@@ -31,3 +35,4 @@ export async function deleteOne (_id){
     
     return deleteOne; 
 }
+export {client}

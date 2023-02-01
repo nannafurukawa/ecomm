@@ -14,6 +14,6 @@ ProductFeature.init(
     },
     {
         sequelize: client,
-        modelName: "ProductFeature",
+        modelName: "ProductFeature", tableName: "productFeatures"
     }
 );

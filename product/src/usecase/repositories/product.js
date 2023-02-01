@@ -1,12 +1,12 @@
 import { randomUUID } from 'node:crypto';
 
 export const produto1 = {
-    nome: "cerveja Pilsen",
+    nome: "Cerveja Pilsen",
     valor: "10",
     quantidade: 1,
     categoria: "bebidas",
     caracteristicas: {
-      nome: "cerveja Pilsen", 
+      nome: "Cerveja Pilsen", 
       descricao: "description"
     },
     usuarioId: "2",

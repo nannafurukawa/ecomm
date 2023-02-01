@@ -1,18 +1,18 @@
 import request from 'supertest';
-import {app} from  '../../src/app.js';
-import { findProducts } from '../../src/usecase/repositories/productRepository';
-import { productExample } from '../data/products.js';
-
+import { app } from '../../src/app.js';
+import { productExample } from '../data/product.js';
+import { cleanProductTable } from '../helpers/products.js';
 
 describe('Product Creation', () => {
 
-      // afterEach(async () => {
-    //     await (await findProducts()).forEach(product => product.destroy())
-    // });
-    
+    //afterEach(async () => {
+      //  await cleanProductTable();
+    //});
+
     it('should create a product given required product data', async () => {
+
         await request(app)
-            .post('/products')
+            .post('/product')
             .set('Content-Type', 'application/json')
             .set('Accept', 'application/json')
             .send(productExample)
@@ -40,7 +40,4 @@ describe('Product Creation', () => {
                 });
             });
     });
-    //afterAll(async() => {
-      //  await client.close();
-     // });
-})
+});

@@ -14,5 +14,5 @@ ProductImage.init(
     description: DataTypes.STRING,
     product_id: DataTypes.INTEGER,
   },
-  { sequelize: client, modelName: "ProductImage" }
+  { sequelize: client, modelName: "ProductImage", tableName: "productImages" }
 );
