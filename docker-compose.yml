@@ -1,48 +1,38 @@
-version: '3.9'
+version: "3.9"
 services:
-
   product:
-    image: eccom/product
+    image: ecomm/product
     build: product
     volumes:
-     - ./product:/app 
+      - ./product:/app
     ports:
       - 3000:3000
 
-  account: 
-    image: eccom/account
+  account:
+    image: ecomm/account
     build: account
     volumes:
-      - ./account:/app 
+      - ./account:/app
     ports:
       - 3001:3001
-      
-      
-  db:
-    image: mysql
-    volumes:
-      - "mysql-data:/var/lib/mysql"
-      - "mysql-log:/var/log/mysql"
-      - "mysql-conf:/etc/mysql/conf.d"
-    restart: unless-stopped
-    ports:
-      - 3306:3306
+
+  account-database:
+    image: mongo
+    container_name: account-database
     environment:
-      MYSQL_ROOT_PASSWORD: true
-      MYSQL_DATABASE: product
-      MYSQL_USER: nanna
-      MYSQL_PASSWORD: 123456
-  
-  adminer:
-    image: adminer
-    restart: always
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=accounts
     ports:
-      - 8080:8080
-      
-volumes:
-  mysql-data:
-    driver: local
-  mysql-log:
-    driver: local
-  mysql-conf:
-    driver: local
+      - 27017:27017
+
+  product-database:
+    image: mysql
+    container_name: product-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=f30a1cd65530caf64f1ea31f702e7124a1bbee55
+      - MYSQL_DATABASE=product
+      - MYSQL_USER=mysqluser
+      - MYSQL_PASSWORD=mysqlpass
+    ports:
+      - 3307:3306

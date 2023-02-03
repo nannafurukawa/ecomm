@@ -15,24 +15,24 @@
         }
     ],
     "paths": {
-        "/accounts": {
+        "/account": {
             "post": {
                 "tags": [
                     "Account"
                 ],
-                "summary": "Account registration",
-                "description": "This route will be responsible for registering a new account",
+                "summary": "Cadastro de conta",
+                "description": "Essa rota será responsável por cadastrar uma nova conta",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/CreatedAccountData"
+                                "$ref": "#/components/schemas/Account"
                             },
                             "examples": {
                                 "account": {
                                     "value": {
-                                        "name": "nome",
-                                        "email": "email",
+                                        "name": "Nanna",
+                                        "email": "nannabessa@gmail.com",
                                         "password": "123456"
                                     }
                                 }
@@ -45,39 +45,81 @@
                         "description": "Error creating user!"
                     },
                     "201": {
-                        "description": "Created",
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/account/{id}": {
+            "get": {
+                "summary": "Buscar uma conta",
+                "description": "Essa rota será responsável por buscar uma conta",
+                "operationId": "getAccounById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID retorno de uma conta",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error returning user!",
                         "content": {
                             "application/json": {
-                                "examples": {
-                                    "account": {
-                                        "value": {
-                                            "id": "2235c7ce-7092-447d-851a-ec156a579af1",
-                                            "name": "nome",
-                                            "email": "email",
-                                            "date": "2022-12-22"
-                                        }
-                                    }
+                                "schema": {
+                                    "$ref": "#/components/schemas/Account"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Account"
                                 }
                             }
                         }
                     }
                 }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "Account": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
+            },
+            "delete": {
+                "summary": "Deletar uma conta",
+                "description": "Essa rota será responsável por deletar uma conta",
+                "operationId": "deleteAccount",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID retorno de uma conta",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error deleting user!"
+                    }
+                }
+            },
+            "components": {
+                "schemas": {
+                    "Account": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            },
+                            "password": {
+                                "type": "string"
+                            }
+                        }
                     }
                 }
             }

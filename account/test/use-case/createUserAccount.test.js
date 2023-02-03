@@ -1,6 +1,71 @@
-import {createUserUseCase} from '../../src/use-case/createUserAccount.js';
+import request from 'supertest';
+import { app } from './../../src/app.js'
 
-const user1 = createUserUseCase('Nanna', 'nannabessa@gmail.com', 'nanna07');
-const user2= createUserUseCase('Marlon', 'lobofurukawa@yahoo.com', 'marlonlobo');
+describe('Account Creation', () => {
+    it('should create an user given correct user data', async () => {
+        await request(app)
+            .post('/accounts')
+            .set('content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({
+                name: 'Nanna',
+                email: 'Nanna@pagonxt.com',
+                password: '12345',
+            })
+            expect(201);
+            expect(body => {
+                expect(body).toEqual({
+                    id: '',
+                    nome: '',
+                    email: '',
+                    createDate: new Date().toISOString().slice(0.10)
+                })
 
-console.log(user1, user2);
+            });
+    });
+}); 
+
+describe('Account Creation', () => {
+    it('should create an user given correct user data', async () => {
+        await request(app)
+            .post('/accounts')
+            .set('content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({
+                name: 'Nanna',
+                email: 'Nanna@pagonxt.com',
+                password: '12345',
+            })
+            expect(201);
+            expect(body => {
+                expect(body).toEqual({
+                    id: '',
+                    nome: '',
+                    email: '',
+                    createDate: new Date().toISOString().slice(0.10)
+                })
+
+            });
+    });
+
+}); 
+it('should create an user given correct user data', async () => {
+    await request(app)
+        .post('/accounts')
+        .set('content-Type', 'application/json')
+        .set('Accept', 'application/json')
+        .send({
+            name: 'Nanna',
+            email: 'Nanna@pagonxt.com',
+            password: '12345',
+        })
+        expect(201);
+        expect(body => {
+            expect(body).toEqual({
+                id: '',
+                nome: '',
+                email: '',
+                createDate: new Date().toISOString().slice(0.10)
+            })
+        });
+});

@@ -2,7 +2,7 @@
     "openapi": "3.0.3",
     "info": {
         "title": "API Product",
-        "description": "API para manipulação de produtos do eccomerce.",
+        "description": "API para manipulação de produtos do ecommerce.",
         "contact": {
             "email": "ecomm@gmail.com"
         },
@@ -10,18 +10,18 @@
     },
     "servers": [
         {
-            "url": "http://localhost:3001",
+            "url": "http://localhost:3000",
             "description": "API de teste"
         }
     ],
     "paths": {
-        "/products": {
-            "post":{
-                 "tags": [
+        "/Product": {
+            "post": {
+                "tags": [
                     "Product"
                 ],
-                "summary": "Creates a product",
-                "description": "Given provided data, creates a product in the database",
+                "summary": "Cadastro de produtos",
+                "description": "Essa rota será responsável por cadastrar um novo produto",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -32,21 +32,21 @@
                                 "product": {
                                     "value": {
                                         "produto": {
-                                            "nome": "name",
+                                            "nome": "Cerveja",
                                             "valor": 15,
                                             "quantidade": 1,
-                                            "descricao": "string",
-                                            "categoria": "string",
+                                            "descricao": "Cerveja IPA",
+                                            "categoria": "bebidas alcoólicas",
                                             "caracteristicas": [
                                                 {
-                                                    "nome": "string",
-                                                    "descricao": "string"
+                                                    "nome": "Cerveja IPA lata",
+                                                    "descricao": " Cerveja IPA ibu 45%"
                                                 }
                                             ],
                                             "imagens": [
                                                 {
-                                                    "url": "string",
-                                                    "descricao": "string"
+                                                    "url": "https://taafrl.vtexassets.com/arquivos/ids/160112-800-auto?v=637958385816970000&width=800&height=auto&aspect=true",
+                                                    "descricao": "Cerveja IPA  lata ibu 45%"
                                                 }
                                             ]
                                         }
@@ -58,41 +58,10 @@
                 },
                 "responses": {
                     "400": {
-                        "description": "Error creating product!"
+                        "description": "Error creating user!"
                     },
                     "201": {
-                        "description": "Created",
-                        "content": {
-                            "application/json": {
-                                "examples": {
-                                    "products": {
-                                        "value": {
-                                            "id": "6d607f6a-3625-45df-884a-d2a479680393",
-                                            "createdDate": "2022-12-22",
-                                            "produto": {
-                                                "nome": "name",
-                                                "valor": 15,
-                                                "quantidade": 1,
-                                                "descricao": "string",
-                                                "categoria": "string",
-                                                "caracteristicas": [
-                                                    {
-                                                        "nome": "name",
-                                                        "descricao": "string"
-                                                    }
-                                                ],
-                                                "imagens": [
-                                                    {
-                                                        "url": "url da imagem",
-                                                        "descricao": "string"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        "description": "Created"
                     }
                 }
             },
@@ -100,45 +69,14 @@
                 "tags": [
                     "Product"
                 ],
-                "summary": "list of registered products",
-                "description": "This route will be responsible for listing the registered products",
+                "summary": "Buscas de produtos",
+                "description": "Essa rota será responsável por buscar todos produto",
                 "responses": {
                     "500": {
-                        "description": "Error fetching products!"
+                        "description": "Error product!"
                     },
                     "200": {
-                        "description": "success",
-                        "content": {
-                            "application/json": {
-                                "examples": {
-                                    "products": {
-                                        "value": {
-                                            "id": "6d607f6a-3625-45df-884a-d2a479680393",
-                                            "createdDate": "2022-12-22",
-                                            "produto": {
-                                                "nome": "nome do produto",
-                                                "valor": 15,
-                                                "quantidade": 1,
-                                                "descricao": "string",
-                                                "categoria": "string",
-                                                "caracteristicas": [
-                                                    {
-                                                        "nome": "nome do produto",
-                                                        "descricao": "string"
-                                                    }
-                                                ],
-                                                "imagens": [
-                                                    {
-                                                        "url": "url da imagem",
-                                                        "descricao": "imagem"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        "description": "Sucess"
                     }
                 }
             }
@@ -153,10 +91,10 @@
                         "type": "string"
                     },
                     "valor": {
-                        "type": "number"
+                        "type": "string"
                     },
                     "quantidade": {
-                        "type": "number"
+                        "type": "string"
                     },
                     "descricao": {
                         "type": "string"

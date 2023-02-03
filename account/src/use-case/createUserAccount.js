@@ -1,23 +1,17 @@
-import bcrypt from "bcryptjs";
-const users = [];
+import { saveAccount } from "../repositories/accountRepository.js";
+import { encodePassword } from "./helpers.js";
 
-export async function createUserUseCase(name, email, password) {
-const id = users.length + 1;
-const createdDate = new Date(). toISOString().substring(0, 10);
+export async function createUserUserCase(name, email, passaword) {
+  const createDate = new Date().toISOString().substring(0.10);
+  const hashPassword = encodePassword(passaword);
+  const user = {
+    name: name,
+    email: email,
+    password: hashPassword,
+    createDate
+  };
 
-const salt = await bcrypt.genSaltSync(10);
-const password1 = await req.body.password;
-const passwordHash = bcrypt.hashSync(password ,6);
-const user = {
-    id,
-    name,
-    email,
-    password: passwordHash,
-    createdDate
-};
-
-saveAccount(user);
-
-return user;
+  await saveAccount(user);
+  return user
 
 }
