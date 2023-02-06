@@ -1,13 +1,13 @@
 import { saveAccount } from "../repositories/accountRepository.js";
-import { encodePassword } from "./helpers.js";
+import { hashPassword } from "../helpers/password.js"
 
-export async function createUserUserCase(name, email, passaword) {
+export async function createUserUserCase(name, email, password) {
   const createDate = new Date().toISOString().substring(0.10);
-  const hashPassword = encodePassword(passaword);
+  const hashedPassword = await hashPassword(password);
   const user = {
     name: name,
     email: email,
-    password: hashPassword,
+    password: hashedPassword,
     createDate
   };
 

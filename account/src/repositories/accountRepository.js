@@ -18,21 +18,29 @@ export async function saveAccount(account) {
   await client.close();
 }
 
-export async function findAccount(_id) {
-    const usercollection = await getUsersCollection();
-    const  dbResult = await usercollection.findOne({
-        "_id": ObjectId(_id)
-    })
-    
-    return dbResult;
- }
+export async function findUserByEmail(email){
+  await client.connect();
+  const usersCollection = await getUsersCollection(client);
+  const user = await usersCollection.findOne({ email });
+  await client.close();
+  return user;
 
- export async function deleteOne (_id){
-    const usercollection = await getUsersCollection();
-    const deleteOne = await usercollection.deleteOne({
-        "_id": ObjectId(_id)
-    })
-    
-    return deleteOne; 
 }
-export {client}
+export async function findAccount(_id) {
+  const usercollection = await getUsersCollection();
+  const dbResult = await usercollection.findOne({
+    "_id": ObjectId(_id)
+  })
+
+  return dbResult;
+}
+
+// export async function deleteOne(_id) {
+//   const usercollection = await getUsersCollection();
+//   const deleteOne = await usercollection.deleteOne({
+//     "_id": ObjectId(_id)
+//   })
+
+//   return deleteOne;
+// }
+export { client }

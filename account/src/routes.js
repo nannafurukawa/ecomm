@@ -1,38 +1,49 @@
-import { request, response, Router } from 'express';
-import { deleteOne } from './repositories/accountRepository.js';
-import { createUserUserCase } from "./use-case/createUserAccount.js";
-import { getUserUserCase } from './use-case/getUserAccount.js';
+import { Router } from 'express';
+import { createUserUseCase } from "../src/use-case/createUserAccount.js";
+import { createToken } from './use-case/createTokenUseCase';
 
-export const router = new Router();
 
-router.post('/account', function(request, response) {
-    const { name, email, password } = request.body; 
-    
-    createUserUserCase(name,email,password).then((createdAccount) => {
-        response.status(201).json(createdAccount)
-    })
-    .catch((error) => {
-        response.status(400).json({ status: 'Error creating user!', message: error.message });
-    })
+const router = Router();
+
+router.post('/accounts/register', async function (req, res, next) {
+
+    const { name, email, password } = req.body
+
+    try {
+        const user = await createUserUseCase(name, email, password);
+        if (user === undefined) {
+            res.status(400).json({ message: 'Account already exists' })
+            return next();
+        }
+
+        res.status(201).json({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            createdDate: user.createdDate
+        });
+    } catch (e) {
+        res.status(400).json({ message: 'Account already exists', e })
+    }
+
+
 });
 
-router.get('/account/:id', function (request, response) {
-    getUserUserCase(request.params.id).then((user) => {
-        console.log(user)
+router.post('/accounts/login', async (req, res) => {
 
-        response.json(user) 
-    })
-    .catch((error) => {
-        response.status(500).json({status: 'Error returning user!' , message: error.message});
-    })
- 
-});
+    const { email, password } = req.body
 
-router.delete('/account/:id', function (request, response) {
-    deleteOne(request.params.id).then((user) => {
-        response.json(user) 
-    })
-    .catch((error) => {
-        response.status(500).json({status: 'Error deleting user!' , message: error.message});
-    })  
-});
+    try {
+        const token = await createToken(email, password)
+        if (token === null) {
+
+            res.status(400).json({ auth: false, message: "email ou senha incorretos!" });
+        } else {
+            res.status(201).json({ auth: true, token: token });
+        }
+    } catch (error) {
+        res.status(400).json({ auth: false, message: "email ou senha incorretos!" });
+    }
+})
+
+export { router };
